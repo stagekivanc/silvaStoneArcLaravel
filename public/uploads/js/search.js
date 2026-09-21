@@ -33,8 +33,22 @@
     window.addEventListener('resize', placeSearch);
 
     const productsUrl = () => {
-      const base = String(window.SILVA_PRODUCTS_URL || window.SILVA_ROUTES?.products || '').trim();
-      if (base) return base.replace(/\/$/, '') || base;
+      const raw = String(
+        window.SILVA_PRODUCTS_URL || (window.SILVA_ROUTES && window.SILVA_ROUTES.products) || ''
+      ).trim();
+      if (raw) {
+        try {
+          const u = new URL(raw, location.origin);
+          const path = String(u.pathname || '/').replace(/\.html$/i, '');
+          return path.replace(/\/$/, '') || path;
+        } catch (e) {
+          return raw.replace(/\.html$/i, '').replace(/\/$/, '');
+        }
+      }
+      const path = String(location.pathname || '').replace(/\.html$/i, '');
+      if (/\/(urunler|products)\/?$/i.test(path)) {
+        return path.replace(/\/$/, '') || path;
+      }
       return 'urunler.html';
     };
 

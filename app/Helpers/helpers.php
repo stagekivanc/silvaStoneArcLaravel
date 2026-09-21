@@ -604,11 +604,19 @@ if (!function_exists('silva_asset')) {
         if (str_starts_with($path, 'silvastone/')) {
             $path = 'uploads/' . substr($path, strlen('silvastone/'));
         }
-        if (str_starts_with($path, 'uploads/')) {
-            return asset($path);
+        $webPath = str_starts_with($path, 'uploads/') ? $path : ('uploads/' . $path);
+        $url = asset($webPath);
+
+        // Bust long-lived CDN/browser caches for CSS/JS (server max-age can be 30 days).
+        $ext = strtolower(pathinfo($webPath, PATHINFO_EXTENSION));
+        if (in_array($ext, ['css', 'js'], true)) {
+            $absolute = public_path($webPath);
+            if (is_file($absolute)) {
+                $url .= (str_contains($url, '?') ? '&' : '?') . 'v=' . rawurlencode(asset_cache_buster($absolute));
+            }
         }
 
-        return asset('uploads/' . $path);
+        return $url;
     }
 }
 
