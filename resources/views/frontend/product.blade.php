@@ -17,6 +17,28 @@
   $featureLabels = $featureLabels ?? \App\Models\ProductFeature::labelMap();
   $wa = preg_replace('/\D+/', '', \App\Models\Setting::get('whatsapp', '908503460226'));
   $relatedFrom = str_replace(':cat', $catName, data_get($detail, 'related_from', ':cat koleksiyonundan'));
+  $specParts = array_filter([$sizeLabel !== '' ? str_replace('×', ' × ', $sizeLabel) : '', $thick]);
+  $specText = $specParts !== [] ? (implode(' × ', $specParts) . ' mm') : '';
+  $material = trim((string) ($product['material'] ?? ''));
+  $pdpLead = app()->getLocale() === 'en'
+      ? trim(sprintf(
+          '%s (%s)%s decorative wall panel.%s%s%s Indoor use only.',
+          $product['title'] ?? '',
+          $product['code'] ?? '',
+          $catName !== '' ? ', part of the ' . $catName . ' collection' : '',
+          $colorName !== '' ? ' ' . $colorName . ' tone.' : '',
+          $specText !== '' ? ' ' . $specText . '.' : '',
+          $material !== '' ? ' ' . $material . '.' : ''
+      ))
+      : trim(sprintf(
+          '%s (%s)%s dekoratif duvar panelidir.%s%s%s Yalnızca iç mekâna uygundur.',
+          $product['title'] ?? '',
+          $product['code'] ?? '',
+          $catName !== '' ? ', ' . $catName . ' koleksiyonuna ait' : '',
+          $colorName !== '' ? ' ' . $colorName . ' ton.' : '',
+          $specText !== '' ? ' ' . $specText . '.' : '',
+          $material !== '' ? ' ' . $material . '.' : ''
+      ));
 @endphp
 
 @push('head')
@@ -66,22 +88,26 @@
           <p class="page-intro-kicker font-display italic">{{ $catName }}</p>
           <p class="pdp-code">{{ $product['code'] }}</p>
           <h1>{{ $product['title'] }}</h1>
-          <p class="pdp-lead">{{ $product['lead'] ?: ($product['title'] . ' (' . $product['code'] . '), ' . $catName . '. ' . $colorName . ', ' . $sizeLabel . ' ' . $mm . ', ' . $thick . ' ' . $mm . '.') }}</p>
+          <p class="pdp-lead">{{ $pdpLead }}</p>
           <div class="pdp-chips">
             <span>{{ $colorName }}</span>
-            <span>{{ $sizeLabel }} {{ $mm }}</span>
+            @if ($sizeLabel !== '')<span>{{ $sizeLabel }} {{ $mm }}</span>@endif
             @if ($thick !== '')<span>{{ $thick }} {{ $mm }}</span>@endif
-            @if ($product['indoor'])<span>{{ $featureLabels['indoor'] ?? 'İç mekana uygun' }}</span>@endif
-            @if ($product['outdoor'])<span>{{ $featureLabels['outdoor'] ?? 'Dış mekana uygun' }}</span>@endif
-            @if ($product['depot'])<span>{{ $featureLabels['depot'] ?? 'Stokta' }}</span>@endif
+            @if ($material !== '')<span>{{ $material }}</span>@endif
+            <span>{{ data_get($detail, 'indoor', 'İç mekân') }}</span>
+            @if ($product['depot'])<span>{{ $featureLabels['depot'] ?? data_get($detail, 'depot', 'Stokta') }}</span>@endif
           </div>
           <dl class="pdp-specs">
             <div><dt>{{ data_get($detail, 'spec_code', 'Ürün kodu') }}</dt><dd>{{ $product['code'] }}</dd></div>
             <div><dt>{{ data_get($detail, 'spec_collection', 'Koleksiyon') }}</dt><dd>{{ $catName }}</dd></div>
             <div><dt>{{ data_get($detail, 'spec_color', 'Renk') }}</dt><dd>{{ $colorName }}</dd></div>
-            <div><dt>{{ data_get($detail, 'spec_size', 'Ölçü') }}</dt><dd>{{ $sizeLabel }} {{ $mm }}</dd></div>
+            <div><dt>{{ data_get($detail, 'spec_size', 'Ölçü') }}</dt><dd>{{ $sizeLabel !== '' ? $sizeLabel . ' ' . $mm : '—' }}</dd></div>
             <div><dt>{{ data_get($detail, 'spec_thick', 'İncelik') }}</dt><dd>{{ $thick !== '' ? $thick . ' ' . $mm : '—' }}</dd></div>
-            <div><dt>{{ data_get($detail, 'spec_extra', 'Özel sipariş') }}</dt><dd>{{ $product['sizeExtra'] ? \App\Support\SilvaProductsDefaults::formatSize($product['sizeExtra']) . ' ' . $mm : '—' }}</dd></div>
+            <div><dt>{{ data_get($detail, 'spec_usage', 'Kullanım') }}</dt><dd>{{ data_get($detail, 'indoor', 'İç mekân') }}</dd></div>
+            @if ($material !== '')
+              <div><dt>{{ data_get($detail, 'spec_material', 'Malzeme') }}</dt><dd>{{ $material }}</dd></div>
+            @endif
+            <div><dt>{{ data_get($detail, 'spec_extra', 'Özel sipariş') }}</dt><dd>{{ $product['sizeExtra'] ?: (app()->getLocale() === 'en' ? 'On request' : 'Talep üzerine') }}</dd></div>
           </dl>
           <div class="pdp-buy">
             <div class="pdp-qty" role="group" aria-label="{{ data_get($detail, 'qty', 'Adet') }}">

@@ -72,11 +72,15 @@ class Product extends Model
         return homepage_media_url($normalized);
     }
 
-    public function displayName(): string
+    public function displayName(?string $lang = null): string
     {
-        $name = trim((string) ($this->name ?? ''));
+        $lang = $lang ?: app()->getLocale();
+        $name = trim((string) ($this->translate($lang)?->title
+            ?: $this->translate($lang)?->name
+            ?: $this->name
+            ?? ''));
 
-        return preg_replace('/\s+Duvar Paneli$/u', '', $name) ?: $name;
+        return preg_replace('/\s+(Duvar Paneli|Wall Panel)$/iu', '', $name) ?: $name;
     }
 
     public function detailUrl(?string $lang = null): string
@@ -95,13 +99,20 @@ class Product extends Model
         $main = $gallery[0] ?? (self::mediaUrl($this->main_image) ?: '');
         $hover = self::mediaUrl($this->hover_image);
         $catSlug = $this->category?->slug ?: '';
+        $title = $this->displayName($lang);
+        $code = $this->sku ?: ($translation?->slug ?: $this->slug);
+        $material = trim((string) (
+            data_get($this->technical_specs, 'material')
+            ?: ($lang === 'en' ? 'Wood-polymer composite (WPC)' : 'Ahşap-polimer kompozit (WPC)')
+        ));
+        $sizeExtra = trim((string) ($this->size_extra ?: ($lang === 'en' ? 'On request' : 'Talep üzerine')));
 
         return [
             'id' => $this->id,
             'cat' => $catSlug,
             'name' => $translation?->name ?: $this->name,
-            'title' => $this->displayName(),
-            'code' => $this->sku ?: ($translation?->slug ?: $this->slug),
+            'title' => $title,
+            'code' => $code,
             'slug' => $translation?->slug ?: $this->slug,
             'color' => $this->color,
             'img' => $main,
@@ -109,11 +120,12 @@ class Product extends Model
             'imgHover' => $hover ?: $main,
             'url' => $this->source_url,
             'size' => $this->panel_size,
-            'sizeExtra' => $this->size_extra,
+            'sizeExtra' => $sizeExtra,
             'thick' => $this->thick,
             'indoor' => (bool) $this->indoor,
             'outdoor' => (bool) $this->outdoor,
             'depot' => (bool) $this->depot,
+            'material' => $material,
             'href' => $this->detailUrl($lang),
             'lead' => $translation?->short_description ?: '',
             'body' => $translation?->description ?: '',
