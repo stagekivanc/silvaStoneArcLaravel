@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
             SilvaContractsSeeder::class,
             SilvaStoresSeeder::class,
             SilvaProjectsSeeder::class,
-            SilvaProductsSeeder::class,
             ArcCatalogSeeder::class,
             SilvaArcHomepageSeeder::class,
             SilvaEnglishContentSeeder::class,

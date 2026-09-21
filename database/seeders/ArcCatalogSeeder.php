@@ -33,9 +33,9 @@ class ArcCatalogSeeder extends Seeder
         $this->seedProductsPage();
         $this->seedColors($payload['colors'] ?? []);
         $categoryIds = $this->seedCategories($payload['categories'] ?? []);
-        $this->deactivateLegacyStoneCatalog(array_values($categoryIds));
         $this->seedProductFeatures();
-        $this->seedProducts($payload['products'] ?? [], $payload['featured'] ?? [], $categoryIds);
+        $keepSkus = $this->seedProducts($payload['products'] ?? [], $payload['featured'] ?? [], $categoryIds);
+        $this->purgeNonArcCatalog($keepSkus, array_keys($categoryIds));
     }
 
     /**
@@ -237,25 +237,46 @@ class ArcCatalogSeeder extends Seeder
             ->update(['status' => false]);
     }
 
-    private function deactivateLegacyStoneCatalog(array $keepCategoryIds): void
+    /**
+     * front/index.html + front/urunler.html katalogu dışındaki tüm ürün/kategorileri sil.
+     */
+    private function purgeNonArcCatalog(array $keepSkus, array $keepCategorySlugs): void
     {
-        ProductCategory::query()
-            ->whereIn('slug', ['stonex', 'stoneart'])
-            ->update(['status' => false, 'home_status' => false]);
+        $keepSkus = array_values(array_filter(array_map('strval', $keepSkus)));
 
-        $legacyIds = ProductCategory::query()->whereIn('slug', ['stonex', 'stoneart'])->pluck('id');
-        if ($legacyIds->isNotEmpty()) {
-            Product::query()
-                ->whereIn('category_id', $legacyIds)
-                ->update(['status' => false, 'home_status' => false]);
+        $removeQuery = Product::query();
+        if ($keepSkus !== []) {
+            $removeQuery->where(function ($q) use ($keepSkus) {
+                $q->whereNull('sku')->orWhereNotIn('sku', $keepSkus);
+            });
         }
 
-        unset($keepCategoryIds);
+        $removed = $removeQuery->count();
+        $removeQuery->each(function (Product $product) {
+            ProductTranslation::query()->where('product_id', $product->id)->delete();
+            $product->delete();
+        });
+
+        ProductCategory::query()
+            ->whereNotIn('slug', $keepCategorySlugs !== [] ? $keepCategorySlugs : ['__none__'])
+            ->each(function (ProductCategory $category) {
+                ProductCategoryTranslation::query()
+                    ->where('product_category_id', $category->id)
+                    ->delete();
+                $category->delete();
+            });
+
+        $this->command?->info(sprintf(
+            'Arc katalog: %d SKU tutuldu, %d yabancı ürün silindi.',
+            count($keepSkus),
+            $removed
+        ));
     }
 
-    private function seedProducts(array $products, array $featured, array $categoryIds): void
+    private function seedProducts(array $products, array $featured, array $categoryIds): array
     {
         $featuredMap = array_flip($featured);
+        $keepSkus = [];
 
         foreach ($products as $index => $item) {
             $catSlug = $item['cat'] ?? 'wood';
@@ -277,9 +298,11 @@ class ArcCatalogSeeder extends Seeder
             $material = trim((string) ($item['material'] ?? 'Ahşap-polimer kompozit (WPC)'));
             $shortTr = $material . '. Yalnızca iç mekâna uygundur.';
             $shortEn = 'Wood-polymer composite (WPC). Indoor use only.';
+            $sku = $code !== '' ? $code : $slugBase;
+            $keepSkus[] = $sku;
 
             $product = Product::updateOrCreate(
-                ['sku' => $code !== '' ? $code : $slugBase],
+                ['sku' => $sku],
                 [
                     'category_id' => $categoryId,
                     'name' => $nameTr,
@@ -330,5 +353,7 @@ class ArcCatalogSeeder extends Seeder
                 ]
             );
         }
+
+        return $keepSkus;
     }
 }
