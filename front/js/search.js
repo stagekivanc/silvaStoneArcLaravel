@@ -32,11 +32,17 @@
     placeSearch();
     window.addEventListener('resize', placeSearch);
 
+    const productsUrl = () => {
+      const base = String(window.SILVA_PRODUCTS_URL || window.SILVA_ROUTES?.products || '').trim();
+      if (base) return base.replace(/\/$/, '') || base;
+      return 'urunler.html';
+    };
+
     document.body.insertAdjacentHTML(
       'beforeend',
       `<div class="search-overlay" id="search-overlay" aria-hidden="true">
         <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="search-title">
-          <form class="search-form" id="search-form" action="urunler.html" method="get">
+          <form class="search-form" id="search-form" action="${productsUrl()}" method="get">
             <i class="bx bx-search" aria-hidden="true"></i>
             <input id="search-input" type="search" name="q" placeholder="Ürün adı veya kodu yazın" autocomplete="off" />
             <kbd>esc</kbd>
@@ -89,12 +95,13 @@
 
     const go = (q) => {
       const term = (q || '').trim();
+      const base = productsUrl();
       close();
       if (!term) {
-        location.href = 'urunler.html';
+        location.href = base;
         return;
       }
-      location.href = `urunler.html?q=${encodeURIComponent(term)}`;
+      location.href = `${base}?q=${encodeURIComponent(term)}`;
     };
 
     const renderHits = () => {

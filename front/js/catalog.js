@@ -31,6 +31,12 @@
     };
   };
 
+  const productsUrl = () => {
+    const base = String(window.SILVA_PRODUCTS_URL || window.SILVA_ROUTES?.products || '').trim();
+    if (base) return base.replace(/\/$/, '') || base;
+    return 'urunler.html';
+  };
+
   const writeState = (s) => {
     const q = new URLSearchParams();
     if (s.cat !== 'all') q.set('cat', s.cat);
@@ -42,7 +48,8 @@
     if (s.page > 1) q.set('page', String(s.page));
     if (s.cols !== 3) q.set('cols', String(s.cols));
     if (s.per !== 24) q.set('per', String(s.per));
-    history.replaceState({}, '', q.toString() ? `urunler.html?${q}` : 'urunler.html');
+    const base = productsUrl();
+    history.replaceState({}, '', q.toString() ? `${base}?${q}` : base);
   };
 
   const filtered = (s) =>
