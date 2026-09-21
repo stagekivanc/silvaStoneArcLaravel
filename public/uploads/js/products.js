@@ -18,18 +18,18 @@ window.SILVA_HERO_SLIDES = window.SILVA_HERO_SLIDES || [
     tone: 'dark',
   },
   {
-    img: 'assets/products/tyd13/02.jpg',
-    kicker: 'Silva Arc Panel · Kök Serisi',
-    title: 'Kök dokusu',
-    lead: 'Kök kaplama karakterli paneller; lobi ve konut iç mekânında sıcak, parlak bir duvar odağı.',
-    tone: 'light',
+    img: 'assets/hero/2.jpg',
+    kicker: 'Silva Arc Panel · Wood Serisi',
+    title: 'Doğal doku',
+    lead: 'Meşe ve ceviz karakterli paneller; konut ve otel iç mekânlarında sakin, sıcak bir yüzey dili.',
+    tone: 'dark',
   },
   {
-    img: 'assets/products/sh-60/02.jpg',
-    kicker: 'Silva Arc Panel · Wood Serisi',
-    title: 'Salon odağı',
-    lead: 'Doğal ceviz ve meşe yüzeyler. Oturma alanlarında sakin ahşap dokuyla net bir mimari merkez.',
-    tone: 'light',
+    img: 'assets/hero/1.jpg',
+    kicker: 'Silva Arc Panel · Traverten Serisi',
+    title: 'Doğal derinlik',
+    lead: 'Traverten dokulu paneller; lobi ve feature wall’da yumuşak, doğal bir mimari odak.',
+    tone: 'dark',
   },
 ];
 window.SILVA_HOME_FEATURED = window.SILVA_HOME_FEATURED || ['MT012', 'MT011', 'TYD13', 'HY01217-1', 'SH-34', 'PM-48', 'SH-60', 'CT-05'];
