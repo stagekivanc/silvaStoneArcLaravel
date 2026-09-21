@@ -13,7 +13,7 @@
   $ctaTitle = __t('footer_cta_title', 'Mekânınız için doğru yüzeyi seçin', 'frontend');
   $ctaText = __t('footer_cta_text', 'En yakın Acarkon Store’dan numune alın.', 'frontend');
   $brandText = __t('footer_brand_text', 'Silva Arc Panel, Acarkon Orman Ürünleri ürün ailesinin dekoratif duvar paneli markasıdır.', 'frontend');
-  $logoWhite = silva_asset('assets/silvalogo-white.svg');
+  $silvaLogo = silva_asset('assets/silvalogo.png') . '?v=' . (@filemtime(public_path('uploads/assets/silvalogo.png')) ?: time());
 @endphp
 
 <footer class="site-footer bg-void text-white/55">
@@ -44,7 +44,7 @@
     <div class="grid gap-12 border-b border-white/10 pb-14 lg:grid-cols-12 lg:gap-10">
       <div class="site-footer-brand lg:col-span-4">
         <a href="{{ $homeUrl }}" class="inline-flex flex-col items-start">
-          <img src="{{ $logoWhite }}" alt="Silva Arc Panel" class="h-14 w-auto md:h-14" />
+          <img src="{{ $silvaLogo }}" alt="Silva Arc Panel" class="logo-on-dark h-12 w-auto md:h-14" />
         </a>
         <p class="mt-5 max-w-sm text-sm font-light leading-relaxed">{{ $brandText }}</p>
         <div class="mt-6 flex flex-wrap gap-2">

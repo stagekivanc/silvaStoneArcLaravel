@@ -65,8 +65,10 @@ body[data-page] #site-header.is-scrolled {
   backdrop-filter: none;
   border-bottom: 1px solid #ececec;
 }
-#site-header.is-scrolled .logo-header-light { display: none; }
-#site-header.is-scrolled .logo-header-dark { display: block; }
+#site-header.is-scrolled .logo-header-light,
+body[data-page] #site-header .logo-header-light { display: none; }
+#site-header.is-scrolled .logo-header-dark,
+body[data-page] #site-header .logo-header-dark { display: block; }
 #site-header .header-byline {
   color: rgba(255, 255, 255, 0.72);
   font-weight: 400;

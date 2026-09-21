@@ -7,8 +7,7 @@
   $dealerUrl = menu_page_url('dealer') ?: route('module.dispatcher', ['lang' => $lang, 'module' => ($pages['dealer'] ?? 'bayilik-basvuru')]);
   $phoneRaw = \App\Models\Setting::get('phone_raw', '+908503460226');
   $phoneLabel = \App\Models\Setting::get('phone', '+90 850 346 02 26');
-  $logoLight = silva_asset('assets/silvalogo-white.svg');
-  $logoDark = silva_asset('assets/silvalogo.svg');
+  $silvaLogo = silva_asset('assets/silvalogo.png') . '?v=' . (@filemtime(public_path('uploads/assets/silvalogo.png')) ?: time());
 @endphp
 
 <header id="site-header" class="fixed inset-x-0 top-0 z-[60] transition-all duration-500">
@@ -46,8 +45,8 @@
     </div>
 
     <a href="{{ $homeUrl }}" class="header-brand justify-self-center flex flex-col items-center leading-none">
-      <img src="{{ $logoLight }}" alt="Silva Arc Panel" class="logo-header-light h-14 w-auto md:h-14" />
-      <img src="{{ $logoDark }}" alt="Silva Arc Panel" class="logo-header-dark hidden h-14 w-auto md:h-14" />
+      <img src="{{ $silvaLogo }}" alt="Silva Arc Panel" class="logo-header-light logo-on-dark h-12 w-auto md:h-14" />
+      <img src="{{ $silvaLogo }}" alt="Silva Arc Panel" class="logo-header-dark hidden h-12 w-auto md:h-14" />
     </a>
 
     <div class="header-actions flex items-center justify-self-end gap-2 md:gap-2.5">

@@ -32,8 +32,8 @@
   @endforeach
 
   @php($social = seo_social_defaults($layoutPage))
-  <link rel="icon" href="{{ site_favicon_url(silva_asset('assets/silvalogo.svg')) }}" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="{{ site_favicon_url(silva_asset('assets/silvalogo.svg')) }}" />
+  <link rel="icon" href="{{ site_favicon_url(silva_asset('assets/silvalogo.png')) }}" type="image/png" />
+  <link rel="apple-touch-icon" href="{{ site_favicon_url(silva_asset('assets/silvalogo.png')) }}" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="{{ str_replace('-', '_', app()->getLocale()) }}" />
