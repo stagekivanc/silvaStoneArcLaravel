@@ -18,21 +18,21 @@ class SilvaHomepageDefaults
                 'secondary_url' => '/tr/magazalar',
                 'slides' => [
                     [
-                        'image' => 'silvastone/assets/products/mt012/04.jpg',
+                        'image' => 'uploads/assets/products/mt012/04.jpg',
                         'kicker' => 'Silva Arc Panel · Metal Serisi',
                         'title' => 'Mimari yüzey',
                         'lead' => 'Fırçalanmış metal dokulu paneller; resepsiyon, kolon ve feature wall’da keskin bir mimari karakter.',
                         'tone' => 'dark',
                     ],
                     [
-                        'image' => 'silvastone/assets/products/tyd13/02.jpg',
+                        'image' => 'uploads/assets/products/tyd13/02.jpg',
                         'kicker' => 'Silva Arc Panel · Kök Serisi',
                         'title' => 'Kök dokusu',
                         'lead' => 'Kök kaplama karakterli paneller; lobi ve konut iç mekânında sıcak, parlak bir duvar odağı.',
                         'tone' => 'light',
                     ],
                     [
-                        'image' => 'silvastone/assets/products/sh-60/02.jpg',
+                        'image' => 'uploads/assets/products/sh-60/02.jpg',
                         'kicker' => 'Silva Arc Panel · Wood Serisi',
                         'title' => 'Salon odağı',
                         'lead' => 'Doğal ceviz ve meşe yüzeyler. Oturma alanlarında sakin ahşap dokuyla net bir mimari merkez.',

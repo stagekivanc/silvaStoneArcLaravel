@@ -427,16 +427,21 @@ if (!function_exists('resolve_public_media_path')) {
         $candidates = [];
 
         if (str_starts_with($normalized, 'front-assets/')) {
+            $candidates[] = public_path('uploads/assets/' . substr($normalized, strlen('front-assets/')));
             $candidates[] = public_path('assets/' . substr($normalized, strlen('front-assets/')));
         } elseif (str_starts_with($normalized, 'silvastone/')) {
+            // Legacy: silvastone/assets/... → uploads/assets/...
+            $candidates[] = public_path('uploads/' . substr($normalized, strlen('silvastone/')));
             $candidates[] = public_path($normalized);
         } elseif (str_starts_with($normalized, 'assets/')) {
+            $candidates[] = public_path('uploads/' . $normalized);
             $candidates[] = public_path($normalized);
         } elseif (str_starts_with($normalized, 'uploads/')) {
             $candidates[] = public_path($normalized);
         } else {
-            // Exact upload first, then Silva assets — never old project leftovers first.
+            // Exact upload first (admin filenames), then structured uploads/assets
             $candidates[] = public_path('uploads/' . $normalized);
+            $candidates[] = public_path('uploads/assets/' . $normalized);
             $candidates[] = public_path('assets/img/' . basename($normalized));
             $candidates[] = public_path('assets/' . $normalized);
         }
@@ -575,10 +580,13 @@ if (!function_exists('homepage_media_url')) {
 
         // Last resort: keep original URL shape even if missing on disk.
         if (str_starts_with($normalized, 'front-assets/')) {
-            return asset('assets/' . substr($normalized, strlen('front-assets/')));
+            return asset('uploads/assets/' . substr($normalized, strlen('front-assets/')));
         }
-        if (str_starts_with($normalized, 'silvastone/') || str_starts_with($normalized, 'assets/') || str_starts_with($normalized, 'uploads/')) {
-            return asset($normalized);
+        if (str_starts_with($normalized, 'silvastone/')) {
+            return asset('uploads/' . substr($normalized, strlen('silvastone/')));
+        }
+        if (str_starts_with($normalized, 'uploads/') || str_starts_with($normalized, 'assets/') || str_starts_with($normalized, 'css/') || str_starts_with($normalized, 'js/')) {
+            return asset(str_starts_with($normalized, 'uploads/') ? $normalized : 'uploads/' . $normalized);
         }
 
         return asset('uploads/' . $normalized);
@@ -590,13 +598,17 @@ if (!function_exists('silva_asset')) {
     {
         $path = ltrim($path, '/');
         if ($path === '') {
-            return asset('silvastone');
+            return asset('uploads');
         }
+        // Legacy silvastone/* → uploads/*
         if (str_starts_with($path, 'silvastone/')) {
+            $path = 'uploads/' . substr($path, strlen('silvastone/'));
+        }
+        if (str_starts_with($path, 'uploads/')) {
             return asset($path);
         }
 
-        return asset('silvastone/' . $path);
+        return asset('uploads/' . $path);
     }
 }
 
@@ -613,7 +625,7 @@ if (!function_exists('silva_url')) {
         if (str_starts_with($path, '/')) {
             return url($path);
         }
-        if (str_starts_with($path, 'silvastone/')) {
+        if (str_starts_with($path, 'silvastone/') || str_starts_with($path, 'uploads/') || str_starts_with($path, 'assets/')) {
             return homepage_media_url($path);
         }
 

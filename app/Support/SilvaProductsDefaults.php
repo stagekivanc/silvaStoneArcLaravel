@@ -90,13 +90,16 @@ class SilvaProductsDefaults
             return $path;
         }
         $normalized = ltrim($path, '/');
-        if (str_starts_with($normalized, 'silvastone/')) {
+        if (str_starts_with($normalized, 'uploads/')) {
+            $normalized = substr($normalized, strlen('uploads/'));
+        }
+        if (str_starts_with($normalized, 'uploads/')) {
             return $normalized;
         }
-        if (str_starts_with($normalized, 'assets/')) {
-            return 'silvastone/' . $normalized;
+        if (str_starts_with($normalized, 'assets/') || str_starts_with($normalized, 'css/') || str_starts_with($normalized, 'js/')) {
+            return 'uploads/' . $normalized;
         }
 
-        return $normalized;
+        return 'uploads/' . $normalized;
     }
 }

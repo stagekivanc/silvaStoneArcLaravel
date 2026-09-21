@@ -18,6 +18,8 @@ class ArcCatalogSeeder extends Seeder
 {
     public function run(): void
     {
+        $this->syncFrontToUploads();
+
         $payloadPath = database_path('data/arc_products.json');
         if (! is_file($payloadPath)) {
             $this->command?->warn('arc_products.json bulunamadı, Arc katalog seed atlandı.');
@@ -31,6 +33,55 @@ class ArcCatalogSeeder extends Seeder
         $categoryIds = $this->seedCategories($payload['categories'] ?? []);
         $this->deactivateLegacyStoneCatalog(array_values($categoryIds));
         $this->seedProducts($payload['products'] ?? [], $payload['featured'] ?? [], $categoryIds);
+    }
+
+    /**
+     * Laravel artık public/silvastone kullanmaz; front statikleri uploads altına kopyalanır.
+     */
+    private function syncFrontToUploads(): void
+    {
+        $front = base_path('front');
+        $uploads = public_path('uploads');
+        if (! is_dir($front)) {
+            return;
+        }
+
+        foreach (['assets', 'css', 'js'] as $dir) {
+            $from = $front . DIRECTORY_SEPARATOR . $dir;
+            $to = $uploads . DIRECTORY_SEPARATOR . $dir;
+            if (! is_dir($from)) {
+                continue;
+            }
+            if (! is_dir($to)) {
+                mkdir($to, 0755, true);
+            }
+            $this->mirrorDirectory($from, $to);
+        }
+    }
+
+    private function mirrorDirectory(string $from, string $to): void
+    {
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($from, \FilesystemIterator::SKIP_DOTS),
+            \RecursiveIteratorIterator::SELF_FIRST
+        );
+
+        foreach ($iterator as $item) {
+            $target = $to . DIRECTORY_SEPARATOR . $iterator->getSubPathName();
+            if ($item->isDir()) {
+                if (! is_dir($target)) {
+                    mkdir($target, 0755, true);
+                }
+                continue;
+            }
+            $targetDir = dirname($target);
+            if (! is_dir($targetDir)) {
+                mkdir($targetDir, 0755, true);
+            }
+            if (! is_file($target) || filemtime($item->getPathname()) > filemtime($target)) {
+                copy($item->getPathname(), $target);
+            }
+        }
     }
 
     private function seedProductsPage(): void

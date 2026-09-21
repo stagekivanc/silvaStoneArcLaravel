@@ -28,21 +28,21 @@ class EnglishDefaults
                 'secondary_url' => '/en/stores',
                 'slides' => [
                     [
-                        'image' => 'silvastone/assets/products/mt012/04.jpg',
+                        'image' => 'uploads/assets/products/mt012/04.jpg',
                         'kicker' => 'Silva Arc Panel · Metal Series',
                         'title' => 'Architectural surface',
                         'lead' => 'Brushed metal-textured panels — a sharp architectural character for reception, columns and feature walls.',
                         'tone' => 'dark',
                     ],
                     [
-                        'image' => 'silvastone/assets/products/tyd13/02.jpg',
+                        'image' => 'uploads/assets/products/tyd13/02.jpg',
                         'kicker' => 'Silva Arc Panel · Root Series',
                         'title' => 'Root texture',
                         'lead' => 'Root-veneer character panels — a warm, luminous wall focus for lobbies and residential interiors.',
                         'tone' => 'light',
                     ],
                     [
-                        'image' => 'silvastone/assets/products/sh-60/02.jpg',
+                        'image' => 'uploads/assets/products/sh-60/02.jpg',
                         'kicker' => 'Silva Arc Panel · Wood Series',
                         'title' => 'Living room focus',
                         'lead' => 'Natural walnut and oak surfaces. A calm wood texture that creates a clear architectural center in living spaces.',

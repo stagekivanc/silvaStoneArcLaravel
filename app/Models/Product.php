@@ -59,10 +59,13 @@ class Product extends Model
             return $path;
         }
         $normalized = ltrim($path, '/');
+        if (str_starts_with($normalized, 'silvastone/')) {
+            $normalized = 'uploads/' . substr($normalized, strlen('silvastone/'));
+        }
         if (str_starts_with($normalized, 'assets/') || str_starts_with($normalized, 'css/') || str_starts_with($normalized, 'js/')) {
             return silva_asset($normalized);
         }
-        if (str_starts_with($normalized, 'silvastone/')) {
+        if (str_starts_with($normalized, 'uploads/')) {
             return homepage_media_url($normalized);
         }
 

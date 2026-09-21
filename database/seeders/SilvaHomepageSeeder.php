@@ -65,7 +65,7 @@ class SilvaHomepageSeeder extends Seeder
             'instagram' => 'https://www.instagram.com/acarkon/',
             'facebook' => 'https://www.facebook.com/',
             'youtube' => 'https://www.youtube.com/',
-            'catalog_url' => 'silvastone/assets/silva-stone-2026-katalog.pdf',
+            'catalog_url' => 'uploads/assets/silva-stone-2026-katalog.pdf',
             'footer_cta_title' => 'Mekânınız için doğru yüzeyi seçin',
             'footer_cta_text' => 'Katalogu inceleyin veya en yakın Acarkon Store’dan numune alın.',
             'footer_brand_text' => 'Silva Arc Panel, Acarkon Orman Ürünleri ürün ailesinin dekoratif duvar paneli markasıdır.',
