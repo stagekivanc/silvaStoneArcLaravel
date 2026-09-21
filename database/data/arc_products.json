@@ -1,0 +1,454 @@
+{
+    "categories": [
+        {
+            "slug": "wood",
+            "name": "Wood Serisi",
+            "name_en": "Wood Series",
+            "order": 1
+        },
+        {
+            "slug": "metal",
+            "name": "Metal Serisi",
+            "name_en": "Metal Series",
+            "order": 2
+        },
+        {
+            "slug": "signature",
+            "name": "Kök Serisi",
+            "name_en": "Root Series",
+            "order": 3
+        },
+        {
+            "slug": "textile",
+            "name": "Traverten Serisi",
+            "name_en": "Travertine Series",
+            "order": 4
+        }
+    ],
+    "colors": [
+        {
+            "slug": "beyaz",
+            "name": "Beyaz",
+            "name_en": "White",
+            "hex": "#f5f5f0",
+            "order": 1
+        },
+        {
+            "slug": "krem",
+            "name": "Krem",
+            "name_en": "Cream",
+            "hex": "#e8e0d0",
+            "order": 2
+        },
+        {
+            "slug": "bej",
+            "name": "Bej",
+            "name_en": "Beige",
+            "hex": "#cbb89a",
+            "order": 3
+        },
+        {
+            "slug": "gumus",
+            "name": "Gümüş",
+            "name_en": "Silver",
+            "hex": "#b0b0b0",
+            "order": 4
+        },
+        {
+            "slug": "bakir",
+            "name": "Bakır",
+            "name_en": "Copper",
+            "hex": "#b87333",
+            "order": 5
+        },
+        {
+            "slug": "antrasit",
+            "name": "Antrasit",
+            "name_en": "Anthracite",
+            "hex": "#3a3a3a",
+            "order": 6
+        },
+        {
+            "slug": "siyah",
+            "name": "Siyah",
+            "name_en": "Black",
+            "hex": "#171717",
+            "order": 7
+        }
+    ],
+    "featured": [
+        "MT012",
+        "MT011",
+        "TYD13",
+        "HY01217-1",
+        "SH-34",
+        "PM-48",
+        "SH-60",
+        "CT-05"
+    ],
+    "products": [
+        {
+            "code": "PM-48",
+            "name": "Açık Meşe Duvar Paneli",
+            "cat": "wood",
+            "color": "krem",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/pm-48\/01.jpg",
+            "imgs": [
+                "assets\/products\/pm-48\/01.jpg"
+            ],
+            "name_en": "Light Oak Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "SH-60",
+            "name": "Doğal Meşe Duvar Paneli",
+            "cat": "wood",
+            "color": "bej",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/sh-60\/01.jpg",
+            "imgs": [
+                "assets\/products\/sh-60\/01.jpg",
+                "assets\/products\/sh-60\/02.jpg",
+                "assets\/products\/sh-60\/03.jpg",
+                "assets\/products\/sh-60\/04.jpg"
+            ],
+            "name_en": "Natural Oak Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "SH-57",
+            "name": "Koyu Ceviz Duvar Paneli",
+            "cat": "wood",
+            "color": "bej",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/sh-57\/01.jpg",
+            "imgs": [
+                "assets\/products\/sh-57\/01.jpg"
+            ],
+            "name_en": "Dark Walnut Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "CT-04",
+            "name": "Ceviz Duvar Paneli",
+            "cat": "wood",
+            "color": "bej",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/ct-04\/01.jpg",
+            "imgs": [
+                "assets\/products\/ct-04\/01.jpg",
+                "assets\/products\/ct-04\/02.png",
+                "assets\/products\/ct-04\/03.png"
+            ],
+            "name_en": "Walnut Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "CT-05",
+            "name": "Füme Meşe Duvar Paneli",
+            "cat": "wood",
+            "color": "siyah",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/ct-05\/01.jpg",
+            "imgs": [
+                "assets\/products\/ct-05\/01.jpg",
+                "assets\/products\/ct-05\/02.png",
+                "assets\/products\/ct-05\/03.png"
+            ],
+            "name_en": "Smoked Oak Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "CT-19",
+            "name": "Antrasit Meşe Duvar Paneli",
+            "cat": "wood",
+            "color": "antrasit",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/ct-19\/01.jpg",
+            "imgs": [
+                "assets\/products\/ct-19\/01.jpg"
+            ],
+            "name_en": "Anthracite Oak Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "SH-33",
+            "name": "Bej Traverten Duvar Paneli",
+            "cat": "textile",
+            "color": "bej",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/sh-33\/01.jpg",
+            "imgs": [
+                "assets\/products\/sh-33\/01.jpg"
+            ],
+            "name_en": "Beige Travertine Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "SH-34",
+            "name": "Fildişi Traverten Duvar Paneli",
+            "cat": "textile",
+            "color": "beyaz",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/sh-34\/01.jpg",
+            "imgs": [
+                "assets\/products\/sh-34\/01.jpg"
+            ],
+            "name_en": "Ivory Travertine Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "SH-36",
+            "name": "Terra Traverten Duvar Paneli",
+            "cat": "textile",
+            "color": "krem",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/sh-36\/01.jpg",
+            "imgs": [
+                "assets\/products\/sh-36\/01.jpg"
+            ],
+            "name_en": "Terra Travertine Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "HY1217-7",
+            "name": "Kök Antrasit Duvar Paneli",
+            "cat": "signature",
+            "color": "antrasit",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/hy1217-7\/01.jpg",
+            "imgs": [
+                "assets\/products\/hy1217-7\/01.jpg"
+            ],
+            "name_en": "Anthracite Root Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "HY1217-2",
+            "name": "Kök Gri Duvar Paneli",
+            "cat": "signature",
+            "color": "gumus",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/hy1217-2\/01.jpg",
+            "imgs": [
+                "assets\/products\/hy1217-2\/01.jpg"
+            ],
+            "name_en": "Grey Root Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "HY01217-3",
+            "name": "Kök Vizon Duvar Paneli",
+            "cat": "signature",
+            "color": "krem",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/hy01217-3\/01.jpg",
+            "imgs": [
+                "assets\/products\/hy01217-3\/01.jpg"
+            ],
+            "name_en": "Vizon Root Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "HY01217-1",
+            "name": "Kök Ceviz Duvar Paneli",
+            "cat": "signature",
+            "color": "bej",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/hy01217-1\/01.jpg",
+            "imgs": [
+                "assets\/products\/hy01217-1\/01.jpg"
+            ],
+            "name_en": "Walnut Root Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "TYD11",
+            "name": "Natural Kök Duvar Paneli",
+            "cat": "signature",
+            "color": "krem",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/tyd11\/01.jpg",
+            "imgs": [
+                "assets\/products\/tyd11\/01.jpg"
+            ],
+            "name_en": "Natural Root Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "TYD13",
+            "name": "Konyak Kök Duvar Paneli",
+            "cat": "signature",
+            "color": "bej",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/tyd13\/01.jpg",
+            "imgs": [
+                "assets\/products\/tyd13\/01.jpg",
+                "assets\/products\/tyd13\/02.jpg",
+                "assets\/products\/tyd13\/03.jpg",
+                "assets\/products\/tyd13\/04.jpg",
+                "assets\/products\/tyd13\/05.jpg",
+                "assets\/products\/tyd13\/06.jpg"
+            ],
+            "name_en": "Cognac Root Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "MT011",
+            "name": "Şampanya Duvar Paneli",
+            "cat": "metal",
+            "color": "bej",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/mt011\/01.jpg",
+            "imgs": [
+                "assets\/products\/mt011\/01.jpg",
+                "assets\/products\/mt011\/02.jpg",
+                "assets\/products\/mt011\/03.jpg",
+                "assets\/products\/mt011\/04.jpg"
+            ],
+            "name_en": "Champagne Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "MT012",
+            "name": "İnox Duvar Paneli",
+            "cat": "metal",
+            "color": "gumus",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/mt012\/01.jpg",
+            "imgs": [
+                "assets\/products\/mt012\/01.jpg",
+                "assets\/products\/mt012\/02.jpg",
+                "assets\/products\/mt012\/03.jpg",
+                "assets\/products\/mt012\/04.jpg",
+                "assets\/products\/mt012\/05.jpg",
+                "assets\/products\/mt012\/06.jpg"
+            ],
+            "name_en": "Inox Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "MT013",
+            "name": "Titanyum Duvar Paneli",
+            "cat": "metal",
+            "color": "gumus",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/mt013\/01.jpg",
+            "imgs": [
+                "assets\/products\/mt013\/01.jpg",
+                "assets\/products\/mt013\/02.jpg"
+            ],
+            "name_en": "Titanium Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        },
+        {
+            "code": "MT014",
+            "name": "Antrasit Duvar Paneli",
+            "cat": "metal",
+            "color": "antrasit",
+            "size": "60x280",
+            "thick": "8",
+            "depot": true,
+            "material": "Ahşap-polimer kompozit (WPC)",
+            "sizeExtra": "Talep üzerine",
+            "img": "assets\/products\/mt014\/01.jpg",
+            "imgs": [
+                "assets\/products\/mt014\/01.jpg"
+            ],
+            "name_en": "Anthracite Wall Panel",
+            "indoor": true,
+            "outdoor": false
+        }
+    ]
+}

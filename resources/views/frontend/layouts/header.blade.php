@@ -1,0 +1,64 @@
+@php
+  $lang = app()->getLocale();
+  $homeUrl = route('home', ['lang' => $lang]);
+  $contactUrl = route('module.dispatcher', ['lang' => $lang, 'module' => ($pages['contact'] ?? 'iletisim')]);
+  $storesUrl = route('module.dispatcher', ['lang' => $lang, 'module' => ($pages['stores'] ?? 'magazalar')]);
+  $productsUrl = route('module.dispatcher', ['lang' => $lang, 'module' => ($pages['products'] ?? 'urunler')]);
+  $dealerUrl = menu_page_url('dealer') ?: route('module.dispatcher', ['lang' => $lang, 'module' => ($pages['dealer'] ?? 'bayilik-basvuru')]);
+  $phoneRaw = \App\Models\Setting::get('phone_raw', '+908503460226');
+  $phoneLabel = \App\Models\Setting::get('phone', '+90 850 346 02 26');
+  $logoLight = silva_asset('assets/silvalogo-white.svg');
+  $logoDark = silva_asset('assets/silvalogo.svg');
+@endphp
+
+<header id="site-header" class="fixed inset-x-0 top-0 z-[60] transition-all duration-500">
+  <div class="header-bar relative mx-auto grid max-w-[1440px] grid-cols-3 items-center px-4 py-4 md:px-8 md:py-5">
+    <div class="menu-wrap relative justify-self-start">
+      <button type="button" id="menu-toggle" class="pill-btn group inline-flex items-center gap-2 rounded-full px-5 py-3 text-[14px] font-medium md:px-6 md:text-[15px]" aria-expanded="false" aria-controls="nav-dropdown">
+        <span>{{ __t('nav_menu', 'Menu', 'frontend') }}</span>
+        <i class="bx bx-grid-alt text-[17px] transition duration-300" id="menu-toggle-icon"></i>
+      </button>
+
+      <div id="nav-dropdown" class="nav-dropdown" aria-hidden="true">
+        <div class="nav-drop-head">
+          <span>{{ __t('nav_menu', 'Menu', 'frontend') }}</span>
+          <button type="button" class="nav-drop-close" aria-label="{{ __t('nav_close', 'Kapat', 'frontend') }}">
+            <i class="bx bx-x"></i>
+          </button>
+        </div>
+        <nav class="nav-dropdown-inner">
+          <a href="{{ $homeUrl }}#neden" class="nav-drop-link">{{ __t('nav_features', 'Özellikler', 'frontend') }}</a>
+          <a href="{{ $productsUrl }}" class="nav-drop-link">{{ __t('nav_collection', 'Panel Koleksiyonu', 'frontend') }}</a>
+          <a href="{{ $storesUrl }}" class="nav-drop-link">{{ __t('nav_showroom', 'Showroom', 'frontend') }}</a>
+          <a href="{{ $dealerUrl }}" class="nav-drop-link">{{ __t('nav_dealer', 'Bayi Ol', 'frontend') }}</a>
+          <a href="{{ $contactUrl }}" class="nav-drop-link">{{ __t('nav_contact', 'İletişim', 'frontend') }}</a>
+          <div class="nav-drop-mobile">
+            <p class="nav-drop-label">{{ __t('nav_lang', 'Dil', 'frontend') }}</p>
+            <div class="nav-drop-langs" role="group" aria-label="{{ __t('nav_lang', 'Dil', 'frontend') }}">
+              <a href="{{ lang_url(request()->path(), 'tr') }}" class="lang-btn {{ $lang === 'tr' ? 'is-active' : '' }}" data-lang="tr">TR</a>
+              <a href="{{ lang_url(request()->path(), 'en') }}" class="lang-btn {{ $lang === 'en' ? 'is-active' : '' }}" data-lang="en">EN</a>
+            </div>
+            <a href="{{ $dealerUrl }}" class="nav-drop-cta">{{ __t('nav_dealer', 'Bayi Ol', 'frontend') }}</a>
+            <a href="tel:{{ $phoneRaw }}" class="nav-drop-phone">{{ $phoneLabel }}</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <a href="{{ $homeUrl }}" class="header-brand justify-self-center flex flex-col items-center leading-none">
+      <img src="{{ $logoLight }}" alt="Silva Arc Panel" class="logo-header-light h-14 w-auto md:h-14" />
+      <img src="{{ $logoDark }}" alt="Silva Arc Panel" class="logo-header-dark hidden h-14 w-auto md:h-14" />
+    </a>
+
+    <div class="header-actions flex items-center justify-self-end gap-2 md:gap-2.5">
+      <div class="pill-btn header-lang flex overflow-hidden rounded-full text-[13px] font-medium tracking-wide md:text-[14px]" role="group" aria-label="{{ __t('nav_lang', 'Dil', 'frontend') }}">
+        <a href="{{ lang_url(request()->path(), 'tr') }}" class="lang-btn {{ $lang === 'tr' ? 'is-active' : '' }} px-3 py-3 md:px-4" data-lang="tr">TR</a>
+        <a href="{{ lang_url(request()->path(), 'en') }}" class="lang-btn {{ $lang === 'en' ? 'is-active' : '' }} px-3 py-3 md:px-4" data-lang="en">EN</a>
+      </div>
+      <a href="{{ $dealerUrl }}" class="pill-btn header-cta inline-flex items-center gap-1.5 rounded-full px-4 py-3 text-[13px] font-medium md:gap-2 md:px-6 md:text-[15px]">
+        <span class="header-cta-text">{{ __t('nav_dealer', 'Bayi Ol', 'frontend') }}</span>
+        <i class="bx bx-plus text-[17px]"></i>
+      </a>
+    </div>
+  </div>
+</header>
